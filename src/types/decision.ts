@@ -1,0 +1,65 @@
+export type DecisionStatus = 'draft' | 'analyzing' | 'done' | 'archived';
+
+export interface Option {
+  id: string;
+  label: string;
+  notes?: string;
+}
+
+export interface Criterion {
+  id: string;
+  name: string;
+  weight: number;
+  description?: string;
+}
+
+export interface Constraint {
+  id: string;
+  type: 'budget' | 'timeline' | 'risk' | 'other';
+  value: string;
+  priority: number;
+}
+
+export interface Decision {
+  id: string;
+  title: string;
+  context?: string;
+  status: DecisionStatus;
+  options: Option[];
+  criteria: Criterion[];
+  constraints: Constraint[];
+  result_json?: AnalysisResult;
+  created_at: string;
+  updated_at: string;
+  user_id?: string;
+}
+
+export interface AnalysisResult {
+  recommendation: {
+    optionId: string;
+    optionLabel: string;
+    confidence: number;
+    summary: string;
+  };
+  scores: {
+    optionId: string;
+    optionLabel: string;
+    criteriaScores: { criterionId: string; criterionName: string; score: number }[];
+    totalScore: number;
+  }[];
+  reasoning: {
+    decomposition: string;
+    assumptions: string[];
+    tradeoffs: string[];
+    risks: string[];
+    sensitivity: string;
+  };
+}
+
+export interface DecisionFormData {
+  title: string;
+  context: string;
+  options: Option[];
+  criteria: Criterion[];
+  constraints: Constraint[];
+}
