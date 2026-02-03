@@ -40,7 +40,7 @@ const App = () => (
               {/* Public routes */}
               <Route path="/" element={<Index />} />
               <Route
-                path="/login"
+                path="/login/*"
                 element={
                   <div className="min-h-screen flex items-center justify-center bg-background">
                     <SignIn 
@@ -53,7 +53,7 @@ const App = () => (
                 }
               />
               <Route
-                path="/signup"
+                path="/signup/*"
                 element={
                   <div className="min-h-screen flex items-center justify-center bg-background">
                     <SignUp 
