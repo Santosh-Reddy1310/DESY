@@ -14,64 +14,70 @@ export function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[128px] animate-pulse-slow [animation-delay:2s]" />
       </div>
 
-      <div className="container relative pt-32 pb-24 md:pt-40 md:pb-36">
+      <div className="container relative pt-20 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-36 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl text-center">
           {/* Badge with shine effect */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary animate-fade-in backdrop-blur-sm">
-            <Sparkles className="h-4 w-4 animate-bounce-subtle" />
-            <span>AI-Powered Decision Intelligence Platform</span>
-            <span className="ml-1 rounded-full bg-primary/20 px-2 py-0.5 text-xs">New</span>
+          <div className="mb-6 md:mb-8 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium text-primary animate-fade-in backdrop-blur-sm">
+            <Sparkles className="h-3 w-3 md:h-4 md:w-4 animate-bounce-subtle" />
+            <span className="hidden sm:inline">AI-Powered Decision Intelligence Platform</span>
+            <span className="sm:hidden">AI Decision Platform</span>
+            <span className="ml-1 rounded-full bg-primary/20 px-1.5 py-0.5 md:px-2 text-xs">New</span>
           </div>
 
           {/* Headline with animated gradient */}
-          <h1 className="mb-8 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl animate-fade-in">
+          <h1 className="mb-6 md:mb-8 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl animate-fade-in leading-tight">
             Make{" "}
             <span className="gradient-text-animated">smarter decisions</span>
             <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             with AI-powered analysis
           </h1>
 
           {/* Subheadline */}
-          <p className="mb-10 text-lg text-muted-foreground sm:text-xl md:text-2xl max-w-3xl mx-auto animate-fade-in leading-relaxed">
+          <p className="mb-8 md:mb-10 text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto animate-fade-in leading-relaxed px-4 sm:px-0">
             Transform complex choices into clear, data-driven outcomes. 
-            DESY analyzes your options, weighs tradeoffs, and delivers actionable recommendations.
+            <span className="hidden sm:inline"> DESY analyzes your options, weighs tradeoffs, and delivers actionable recommendations.</span>
+            <span className="sm:hidden"> Get AI-powered insights for better decisions.</span>
           </p>
 
           {/* Trust indicators */}
-          <div className="flex items-center justify-center gap-6 mb-10 text-sm text-muted-foreground animate-fade-in">
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+          <div className="flex items-center justify-center gap-3 sm:gap-6 mb-8 md:mb-10 text-xs sm:text-sm text-muted-foreground animate-fade-in flex-wrap">
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <CheckCircle2 className="h-3 w-3 sm:h-4 sm:w-4 text-emerald-500 flex-shrink-0" />
               <span>Secure & Private</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>AI-powered insights</span>
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <CheckCircle2 className="h-3 w-3 sm:h-4 sm:w-4 text-emerald-500 flex-shrink-0" />
+              <span className="hidden sm:inline">AI-powered insights</span>
+              <span className="sm:hidden">AI insights</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>Data-driven results</span>
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <CheckCircle2 className="h-3 w-3 sm:h-4 sm:w-4 text-emerald-500 flex-shrink-0" />
+              <span className="hidden sm:inline">Data-driven results</span>
+              <span className="sm:hidden">Data-driven</span>
             </div>
           </div>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 animate-fade-in">
-            <Link to="/decisions/new">
-              <Button size="xl" className="gap-2 shadow-2xl shadow-primary/30 hover:shadow-primary/40 transition-all hover:scale-105 group">
-                <Zap className="h-5 w-5 group-hover:animate-bounce-subtle" />
-                Start Your First Decision
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-16 md:mb-20 animate-fade-in px-4 sm:px-0">
+            <Link to="/decisions/new" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto gap-2 shadow-2xl shadow-primary/30 hover:shadow-primary/40 transition-all hover:scale-105 group text-sm md:text-base px-6 md:px-8 py-3 md:py-4">
+                <Zap className="h-4 w-4 md:h-5 md:w-5 group-hover:animate-bounce-subtle" />
+                <span className="hidden sm:inline">Start Your First Decision</span>
+                <span className="sm:hidden">Get Started</span>
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
-            <Link to="/dashboard">
-              <Button variant="outline" size="xl" className="gap-2 bg-background/50 backdrop-blur-sm hover:bg-background/80 transition-all">
-                <TrendingUp className="h-5 w-5" />
+            <Link to="/dashboard" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2 bg-background/50 backdrop-blur-sm hover:bg-background/80 transition-all text-sm md:text-base px-6 md:px-8 py-3 md:py-4">
+                <TrendingUp className="h-4 w-4 md:h-5 md:w-5" />
                 View Dashboard
               </Button>
             </Link>
           </div>
 
           {/* Features grid with glass cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto animate-fade-in">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto animate-fade-in px-4 sm:px-0">
             <FeatureCard
               icon={Target}
               title="Structured Framework"
@@ -112,16 +118,16 @@ function FeatureCard({
   gradient: string;
 }) {
   return (
-    <div className="group relative rounded-2xl border border-border/50 bg-card/50 p-6 text-left transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 backdrop-blur-sm hover:-translate-y-1">
+    <div className="group relative rounded-xl sm:rounded-2xl border border-border/50 bg-card/50 p-4 sm:p-6 text-left transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 backdrop-blur-sm hover:-translate-y-1">
       {/* Gradient overlay on hover */}
-      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+      <div className={`absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
       
       <div className="relative">
-        <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg shadow-primary/10 transition-transform group-hover:scale-110`}>
-          <Icon className="h-6 w-6" />
+        <div className={`mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg shadow-primary/10 transition-transform group-hover:scale-110`}>
+          <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
         </div>
-        <h3 className="mb-2 font-semibold text-lg">{title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+        <h3 className="mb-2 font-semibold text-base sm:text-lg">{title}</h3>
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{description}</p>
       </div>
     </div>
   );

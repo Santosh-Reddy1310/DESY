@@ -366,3 +366,45 @@
     @apply bg-muted-foreground/50;
   }
 }
+
+/* Mobile-specific optimizations */
+@layer utilities {
+  /* Improve touch targets on mobile */
+  @media (max-width: 768px) {
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better spacing for mobile */
+    .mobile-padding {
+      @apply px-4 py-2;
+    }
+    
+    /* Prevent horizontal scroll */
+    .mobile-container {
+      @apply max-w-full overflow-x-hidden;
+    }
+    
+    /* Better text sizing for mobile */
+    .mobile-text {
+      @apply text-sm leading-relaxed;
+    }
+    
+    /* Improved button sizing for mobile */
+    .mobile-button {
+      @apply min-h-[44px] px-4 py-3 text-sm;
+    }
+  }
+  
+  /* Prevent zoom on input focus on iOS */
+  @media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+}

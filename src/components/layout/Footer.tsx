@@ -8,7 +8,7 @@ export function Footer() {
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-mesh opacity-20" />
       
-      <div className="container relative py-12">
+      <div className="container relative py-8 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
