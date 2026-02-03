@@ -41,15 +41,15 @@ export function Hero() {
           <div className="flex items-center justify-center gap-6 mb-10 text-sm text-muted-foreground animate-fade-in">
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>Free to use</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>No signup required</span>
+              <span>Secure & Private</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
               <span>AI-powered insights</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+              <span>Data-driven results</span>
             </div>
           </div>
 
