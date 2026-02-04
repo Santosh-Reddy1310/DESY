@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 import { DashboardSidebar } from "@/components/layout/DashboardSidebar";
 import { DecisionCard } from "@/components/dashboard/DecisionCard";
 import { Button } from "@/components/ui/button";
@@ -12,21 +13,29 @@ import { cn } from "@/lib/utils";
 
 export default function History() {
   const { toast } = useToast();
+  const { user, isLoaded } = useUser();
   const [searchQuery, setSearchQuery] = useState("");
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [timeFilter, setTimeFilter] = useState<"all" | "week" | "month" | "year">("all");
 
   useEffect(() => {
-    loadDecisions();
-  }, []);
+    if (isLoaded && user) {
+      loadDecisions();
+    }
+  }, [isLoaded, user]);
 
   async function loadDecisions() {
+    if (!user?.id) {
+      setIsLoading(false);
+      return;
+    }
+
     try {
       setIsLoading(true);
-      const data = await getUserDecisions({});
+      const data = await getUserDecisions(user.id, {});
       // Sort by date, newest first
-      const sorted = data.sort((a, b) => 
+      const sorted = data.sort((a, b) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       );
       setDecisions(sorted);
@@ -44,7 +53,7 @@ export default function History() {
 
   const filterByTime = (decision: Decision) => {
     if (timeFilter === "all") return true;
-    
+
     const decisionDate = new Date(decision.created_at);
     const now = new Date();
     const diffTime = now.getTime() - decisionDate.getTime();
@@ -83,7 +92,7 @@ export default function History() {
   return (
     <div className="min-h-screen flex bg-background">
       <DashboardSidebar />
-      
+
       <div className="flex-1 flex flex-col">
         {/* Header Section */}
         <div className="relative border-b bg-gradient-to-b from-muted/30 to-background">
@@ -130,7 +139,7 @@ export default function History() {
             </div>
           </div>
         </div>
-        
+
         <main className="flex-1 container py-8">
           {/* Search and filters */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-8">
@@ -176,7 +185,7 @@ export default function History() {
           )}
 
           {/* Decision history grouped by date */}
-          {isLoading ? (
+          {!isLoaded || isLoading ? (
             <div className="text-center py-20">
               <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-primary/10 mb-4">
                 <div className="h-8 w-8 border-3 border-primary/30 border-t-primary rounded-full animate-spin" />

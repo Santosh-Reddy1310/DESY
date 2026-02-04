@@ -1,27 +1,33 @@
-/**
- * Helper functions for Clerk integration
- */
+import { useUser } from '@clerk/clerk-react';
 
 /**
- * Get the current Clerk user ID
- * This should be called from components that have access to Clerk context
+ * Hook to get the current Clerk user ID
+ * This must be called from within a React component that has access to Clerk context
  */
-export function getClerkUserId(): string | null {
-  // Access Clerk's global instance
-  if (typeof window !== 'undefined' && (window as any).Clerk) {
-    const clerk = (window as any).Clerk;
-    return clerk.user?.id || null;
+export function useClerkUserId(): string | null {
+  const { user, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return null;
   }
-  return null;
+
+  return user?.id || null;
 }
 
 /**
- * Get the current user ID or throw an error
+ * Hook to require authentication - throws error if not authenticated
+ * This must be called from within a React component that has access to Clerk context
  */
-export function requireClerkUserId(): string {
-  const userId = getClerkUserId();
-  if (!userId) {
+export function useRequireAuth(): { userId: string; isLoading: boolean } {
+  const { user, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return { userId: '', isLoading: true };
+  }
+
+  if (!user) {
     throw new Error('User not authenticated. Please log in.');
   }
-  return userId;
+
+  return { userId: user.id, isLoading: false };
 }

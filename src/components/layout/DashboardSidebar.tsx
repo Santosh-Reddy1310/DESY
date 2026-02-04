@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { 
-  LayoutDashboard, 
-  Plus, 
-  Settings, 
+import {
+  LayoutDashboard,
+  Plus,
+  Settings,
   History,
   ChevronLeft,
   ChevronRight,
@@ -15,18 +15,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/logo";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/contexts/ClerkAuthContext";
+import { useUser } from "@clerk/clerk-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export function DashboardSidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
+
   const location = useLocation();
-  const { user, signOut } = useAuth();
+  const { signOut } = useAuth();
+  const { user } = useUser();
   const isMobile = useIsMobile();
 
   // Close mobile menu when route changes
@@ -34,20 +35,8 @@ export function DashboardSidebar() {
     setMobileOpen(false);
   }, [location.pathname]);
 
-  // Load user data
-  useEffect(() => {
-    const loadUserData = async () => {
-      if (!user) return;
-
-      const { data: { user: authUser } } = await supabase.auth.getUser();
-      if (authUser) {
-        setUserName(authUser.user_metadata?.full_name || "User");
-        setUserEmail(authUser.email || "");
-      }
-    };
-
-    loadUserData();
-  }, [user]);
+  const userName = user?.fullName || "User";
+  const userEmail = user?.primaryEmailAddress?.emailAddress || "";
 
   // Get user initials for avatar
   const getUserInitials = () => {
@@ -126,6 +115,7 @@ export function DashboardSidebar() {
           title={!isMobile && collapsed ? userName : undefined}
         >
           <Avatar className="h-8 w-8 flex-shrink-0">
+            <AvatarImage src={user?.imageUrl} alt={userName} />
             <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
               {getUserInitials()}
             </AvatarFallback>
@@ -188,11 +178,11 @@ export function DashboardSidebar() {
           // Mobile styles
           isMobile
             ? cn(
-                "w-64 transform",
-                mobileOpen ? "translate-x-0" : "-translate-x-full"
-              )
+              "w-64 transform",
+              mobileOpen ? "translate-x-0" : "-translate-x-full"
+            )
             : // Desktop styles
-              collapsed ? "w-16" : "w-64"
+            collapsed ? "w-16" : "w-64"
         )}
       >
         <SidebarContent />

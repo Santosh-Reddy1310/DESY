@@ -1,5 +1,6 @@
 import { useState, useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 import { DashboardSidebar } from "@/components/layout/DashboardSidebar";
 import { TemplateSelector } from "@/components/wizard/TemplateSelector";
 import { StepIndicator } from "@/components/wizard/StepIndicator";
@@ -15,7 +16,6 @@ import { analyzeDecision, validateDecisionForAnalysis } from "@/lib/analysis-ser
 import { createDecision, updateDecisionStatus, saveAnalysisResult } from "@/lib/supabase-service";
 import { getTemplateById } from "@/lib/decision-templates";
 import { sendDecisionCompleteNotification } from "@/lib/notification-service";
-import { useAuth } from "@/contexts/AuthContext";
 import type { DecisionFormData, Option, Criterion, Constraint } from "@/types/decision";
 
 type FormAction =
@@ -69,7 +69,7 @@ const steps = [
 export default function NewDecision() {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user } = useUser();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, dispatch] = useReducer(formReducer, initialState);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -137,7 +137,10 @@ export default function NewDecision() {
       // Create decision in Supabase (or use existing if editing)
       let decisionId = currentDecisionId;
       if (!decisionId) {
-        const decision = await createDecision(formData);
+        if (!user?.id) {
+          throw new Error('User not authenticated');
+        }
+        const decision = await createDecision(user.id, formData);
         decisionId = decision.id;
         setCurrentDecisionId(decisionId);
       }
@@ -171,7 +174,7 @@ export default function NewDecision() {
         description: error instanceof Error ? error.message : "Please try again.",
         variant: "destructive",
       });
-      
+
       // Reset status if we have a decision ID
       if (currentDecisionId) {
         await updateDecisionStatus(currentDecisionId, "draft").catch(console.error);
@@ -235,8 +238,8 @@ export default function NewDecision() {
           <div className="max-w-3xl mx-auto">
             {/* Breadcrumb Navigation */}
             <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6" aria-label="Breadcrumb">
-              <Link 
-                to="/dashboard" 
+              <Link
+                to="/dashboard"
                 className="flex items-center gap-1.5 hover:text-foreground transition-colors"
               >
                 <Home className="h-4 w-4" />
@@ -321,7 +324,7 @@ export default function NewDecision() {
           </div>
         </main>
       </div>
-      
+
       {/* Template Selector Modal */}
       {showTemplateSelector && (
         <TemplateSelector

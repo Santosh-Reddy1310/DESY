@@ -5,18 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Settings as SettingsIcon, 
-  User, 
-  Bell, 
-  Shield, 
+import {
+  Settings as SettingsIcon,
+  User,
+  Bell,
+  Shield,
   Key,
   Trash2,
   Save,
   Loader2
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/contexts/AuthContext";
+import { useUser, useClerk } from "@clerk/clerk-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   Card,
@@ -46,7 +46,8 @@ import {
 
 export default function Settings() {
   const { toast } = useToast();
-  const { user, signOut } = useAuth();
+  const { signOut } = useClerk();
+  const { user } = useUser();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -56,34 +57,32 @@ export default function Settings() {
     // Profile
     name: "",
     email: "",
-    
+
     // Notifications
     emailNotifications: true,
     analysisComplete: true,
     weeklyDigest: false,
-    
+
     // AI Preferences
     aiProvider: "groq",
     aiModel: "llama-3.1-70b-versatile",
   });
 
-  // Load user data from Supabase
+  // Load user data from Clerk
   useEffect(() => {
     const loadUserData = async () => {
       if (!user) return;
 
       setIsLoading(true);
       try {
-        // Get user metadata from auth
-        const { data: { user: authUser } } = await supabase.auth.getUser();
-        
-        if (authUser) {
-          setSettings(prev => ({
-            ...prev,
-            name: authUser.user_metadata?.full_name || "",
-            email: authUser.email || "",
-          }));
-        }
+        const name = user.fullName || "";
+        const email = user.primaryEmailAddress?.emailAddress || "";
+
+        setSettings(prev => ({
+          ...prev,
+          name: name,
+          email: email,
+        }));
 
         // Load user preferences from a settings table if you have one
         // For now, we'll use localStorage as a fallback
@@ -93,8 +92,8 @@ export default function Settings() {
           setSettings(prev => ({
             ...prev,
             ...preferences,
-            name: authUser?.user_metadata?.full_name || prev.name,
-            email: authUser?.email || prev.email,
+            name: name || prev.name,
+            email: email || prev.email,
           }));
         }
       } catch (error) {
@@ -117,14 +116,14 @@ export default function Settings() {
 
     setIsSaving(true);
     try {
-      // Update user metadata in Supabase Auth
-      const { error: updateError } = await supabase.auth.updateUser({
-        data: {
-          full_name: settings.name,
-        },
-      });
+      // Update user metadata in Clerk
+      const [firstName, ...lastNameParts] = settings.name.trim().split(" ");
+      const lastName = lastNameParts.join(" ");
 
-      if (updateError) throw updateError;
+      await user.update({
+        firstName: firstName || "",
+        lastName: lastName || "",
+      });
 
       // Save preferences to localStorage (or your settings table)
       const preferences = {
@@ -160,17 +159,17 @@ export default function Settings() {
       // Step 1: Try to call the RPC function to delete everything including auth account
       try {
         const { data, error: rpcError } = await supabase.rpc('delete_my_account');
-        
+
         if (!rpcError && data?.success) {
           // Success! Account and data deleted
           console.log("Account deleted via RPC function");
-          
+
           // Clear localStorage
           localStorage.removeItem(`user_preferences_${user.id}`);
-          
+
           // Sign out
           await signOut();
-          
+
           toast({
             title: "Account deleted",
             description: "Your account and all data have been permanently deleted.",
@@ -232,7 +231,7 @@ export default function Settings() {
   return (
     <div className="min-h-screen flex bg-background">
       <DashboardSidebar />
-      
+
       <div className="flex-1 flex flex-col">
         {/* Header Section */}
         <div className="relative border-b bg-gradient-to-b from-muted/30 to-background">
@@ -248,8 +247,8 @@ export default function Settings() {
                   Manage your account preferences and application settings
                 </p>
               </div>
-              <Button 
-                onClick={handleSave} 
+              <Button
+                onClick={handleSave}
                 disabled={isSaving}
                 size="lg"
                 className="gap-2 shadow-lg shadow-primary/25"
@@ -269,7 +268,7 @@ export default function Settings() {
             </div>
           </div>
         </div>
-        
+
         <main className="flex-1 container py-8">
           <div className="max-w-4xl mx-auto space-y-6">
             {/* Profile Settings */}
@@ -284,6 +283,15 @@ export default function Settings() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="userId">User ID</Label>
+                  <Input
+                    id="userId"
+                    value={user?.id || ""}
+                    disabled
+                    className="bg-muted font-mono text-xs"
+                  />
+                </div>
                 <div className="space-y-2">
                   <Label htmlFor="name">Full Name</Label>
                   <Input
@@ -330,7 +338,7 @@ export default function Settings() {
                   </div>
                   <Switch
                     checked={settings.emailNotifications}
-                    onCheckedChange={(checked) => 
+                    onCheckedChange={(checked) =>
                       setSettings({ ...settings, emailNotifications: checked })
                     }
                   />
@@ -345,7 +353,7 @@ export default function Settings() {
                   </div>
                   <Switch
                     checked={settings.analysisComplete}
-                    onCheckedChange={(checked) => 
+                    onCheckedChange={(checked) =>
                       setSettings({ ...settings, analysisComplete: checked })
                     }
                   />
@@ -360,7 +368,7 @@ export default function Settings() {
                   </div>
                   <Switch
                     checked={settings.weeklyDigest}
-                    onCheckedChange={(checked) => 
+                    onCheckedChange={(checked) =>
                       setSettings({ ...settings, weeklyDigest: checked })
                     }
                   />

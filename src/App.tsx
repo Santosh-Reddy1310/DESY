@@ -27,13 +27,13 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <ClerkProvider 
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ClerkProvider
           publishableKey={CLERK_PUBLISHABLE_KEY}
           signInUrl="/login"
           signUpUrl="/signup"
-          afterSignInUrl="/dashboard"
-          afterSignUpUrl="/dashboard"
+          signInFallbackRedirectUrl="/dashboard"
+          signUpFallbackRedirectUrl="/dashboard"
         >
           <AuthProvider>
             <Routes>
@@ -43,11 +43,11 @@ const App = () => (
                 path="/login/*"
                 element={
                   <div className="min-h-screen flex items-center justify-center bg-background">
-                    <SignIn 
-                      routing="path" 
-                      path="/login" 
+                    <SignIn
+                      routing="path"
+                      path="/login"
                       signUpUrl="/signup"
-                      afterSignInUrl="/dashboard"
+                      fallbackRedirectUrl="/dashboard"
                     />
                   </div>
                 }
@@ -56,17 +56,17 @@ const App = () => (
                 path="/signup/*"
                 element={
                   <div className="min-h-screen flex items-center justify-center bg-background">
-                    <SignUp 
-                      routing="path" 
-                      path="/signup" 
+                    <SignUp
+                      routing="path"
+                      path="/signup"
                       signInUrl="/login"
-                      afterSignUpUrl="/dashboard"
+                      fallbackRedirectUrl="/dashboard"
                     />
                   </div>
                 }
               />
               <Route path="/forgot-password" element={<Navigate to="/login" replace />} />
-              
+
               {/* Protected routes */}
               <Route
                 path="/dashboard"
@@ -116,7 +116,7 @@ const App = () => (
                   </ProtectedRoute>
                 }
               />
-              
+
               {/* Catch-all route */}
               <Route path="*" element={<NotFound />} />
             </Routes>

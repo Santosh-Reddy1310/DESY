@@ -1,13 +1,11 @@
 import { supabase } from '@/integrations/supabase/client';
 import type { Decision, DecisionFormData, DecisionStatus } from '@/types/decision';
-import { requireClerkUserId } from './clerk-helpers';
 
 /**
  * Create a new decision in Supabase
  */
-export async function createDecision(data: DecisionFormData): Promise<Decision> {
-  const userId = requireClerkUserId();
-  
+export async function createDecision(userId: string, data: DecisionFormData): Promise<Decision> {
+
   const { data: decision, error } = await supabase
     .from('decisions')
     .insert({
@@ -85,11 +83,11 @@ export async function getDecision(id: string): Promise<Decision> {
     const sampleDecisions = getSampleDecisions();
     const sampleIndex = parseInt(id.replace('sample-', ''));
     const sample = sampleDecisions[sampleIndex];
-    
+
     if (!sample) {
       throw new Error('Sample decision not found');
     }
-    
+
     // Return sample decision with proper structure
     return {
       ...sample,
@@ -118,10 +116,11 @@ export async function getDecision(id: string): Promise<Decision> {
 /**
  * Get all decisions for the current user
  */
-export async function getUserDecisions(filters?: {
+export async function getUserDecisions(userId: string, filters?: {
   status?: DecisionStatus[];
   search?: string;
 }): Promise<Decision[]> {
+
   let query = supabase
     .from('decisions')
     .select(`
@@ -130,6 +129,7 @@ export async function getUserDecisions(filters?: {
       criteria (*),
       constraints (*)
     `)
+    .eq('user_id', userId)
     .order('updated_at', { ascending: false });
 
   if (filters?.status && filters.status.length > 0) {
@@ -155,7 +155,7 @@ export async function updateDecisionStatus(
 ): Promise<void> {
   const { error } = await supabase
     .from('decisions')
-    .update({ 
+    .update({
       status,
       updated_at: new Date().toISOString(),
     })
