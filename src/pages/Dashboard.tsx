@@ -255,7 +255,7 @@ export default function Dashboard() {
                           <div>
                             <h2 className="text-xl font-bold">Example Decisions</h2>
                             <p className="text-sm text-muted-foreground">
-                              Explore these sample decisions to see how DESY works
+                              Explore these sample decisions to see how .DI works
                             </p>
                           </div>
                         </div>

@@ -42,13 +42,13 @@ export function HowItWorks() {
       {/* Background */}
       <div className="absolute inset-0 bg-muted/30" />
       <div className="absolute inset-0 bg-mesh opacity-30" />
-      
+
       <div className="container relative">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-6">
             Simple Process
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">How DESY Works</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">How .DI Works</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Four simple steps to transform uncertainty into clarity and confidence
           </p>
@@ -69,7 +69,7 @@ export function HowItWorks() {
                     <ArrowRight className="h-4 w-4 text-primary/50 -ml-2" />
                   </div>
                 )}
-                
+
                 <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-border/60 transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 h-full">
                   {/* Step number badge */}
                   <div className={cn(
@@ -79,7 +79,7 @@ export function HowItWorks() {
                   )}>
                     {item.step}
                   </div>
-                  
+
                   {/* Icon */}
                   <div className={cn(
                     "mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white bg-gradient-to-br shadow-lg transition-transform group-hover:scale-110",
@@ -88,7 +88,7 @@ export function HowItWorks() {
                   )}>
                     <Icon className="h-7 w-7" />
                   </div>
-                  
+
                   <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>

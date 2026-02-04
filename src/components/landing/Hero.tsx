@@ -35,8 +35,8 @@ export function Hero() {
 
           {/* Subheadline */}
           <p className="mb-8 md:mb-10 text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto animate-fade-in leading-relaxed px-4 sm:px-0">
-            Transform complex choices into clear, data-driven outcomes. 
-            <span className="hidden sm:inline"> DESY analyzes your options, weighs tradeoffs, and delivers actionable recommendations.</span>
+            Transform complex choices into clear, data-driven outcomes.
+            <span className="hidden sm:inline"> .DI analyzes your options, weighs tradeoffs, and delivers actionable recommendations.</span>
             <span className="sm:hidden"> Get AI-powered insights for better decisions.</span>
           </p>
 
@@ -121,7 +121,7 @@ function FeatureCard({
     <div className="group relative rounded-xl sm:rounded-2xl border border-border/50 bg-card/50 p-4 sm:p-6 text-left transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 backdrop-blur-sm hover:-translate-y-1">
       {/* Gradient overlay on hover */}
       <div className={`absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-      
+
       <div className="relative">
         <div className={`mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg shadow-primary/10 transition-transform group-hover:scale-110`}>
           <Icon className="h-5 w-5 sm:h-6 sm:w-6" />

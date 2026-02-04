@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="relative border-t border-border/40 bg-gradient-to-b from-muted/30 to-muted/50">
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-mesh opacity-20" />
-      
+
       <div className="container relative py-8 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -71,7 +71,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} DESY. All rights reserved.
+            © {new Date().getFullYear()} .DI. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
             Made with <Heart className="h-3.5 w-3.5 text-rose-500 fill-rose-500" /> for better decisions
