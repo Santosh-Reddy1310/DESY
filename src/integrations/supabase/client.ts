@@ -13,5 +13,17 @@ export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABL
     storage: localStorage,
     persistSession: true,
     autoRefreshToken: true,
+  },
+  global: {
+    headers: {
+      // Clerk token will be set dynamically via setClerkToken function
+    }
   }
 });
+
+// Function to set Clerk's JWT token for Supabase
+export function setClerkToken(token: string | null) {
+  if (token) {
+    supabase.realtime.setAuth(token);
+  }
+}
