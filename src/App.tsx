@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ClerkProvider, SignIn, SignUp } from "@clerk/clerk-react";
 import { AuthProvider } from "@/contexts/ClerkAuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { SupabaseAuthSync } from "@/components/auth/SupabaseAuthSync";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import NewDecision from "./pages/NewDecision";
@@ -35,8 +36,9 @@ const App = () => (
           signInFallbackRedirectUrl="/dashboard"
           signUpFallbackRedirectUrl="/dashboard"
         >
-          <AuthProvider>
-            <Routes>
+          <SupabaseAuthSync>
+            <AuthProvider>
+              <Routes>
               {/* Public routes */}
               <Route path="/" element={<Index />} />
               <Route
@@ -121,6 +123,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AuthProvider>
+          </SupabaseAuthSync>
         </ClerkProvider>
       </BrowserRouter>
     </TooltipProvider>
