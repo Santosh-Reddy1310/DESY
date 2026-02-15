@@ -237,3 +237,104 @@ export async function deleteDecision(id: string): Promise<void> {
 
   if (error) throw error;
 }
+
+/**
+ * Update decision with all related data (options, criteria, constraints)
+ */
+export async function updateDecisionFull(
+  id: string,
+  data: DecisionFormData
+): Promise<Decision> {
+  // Update decision title and context
+  const { error: updateError } = await supabase
+    .from('decisions')
+    .update({
+      title: data.title,
+      context: data.context,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', id);
+
+  if (updateError) throw updateError;
+
+  // Delete existing options and insert new ones
+  if (data.options.length > 0) {
+    const { error: deleteOptionsError } = await supabase
+      .from('options')
+      .delete()
+      .eq('decision_id', id);
+    
+    if (deleteOptionsError) throw deleteOptionsError;
+
+    const { error: optionsError } = await supabase
+      .from('options')
+      .insert(
+        data.options
+          .filter(o => o.label.trim())
+          .map((opt, index) => ({
+            decision_id: id,
+            label: opt.label,
+            notes: opt.notes,
+            sort_order: index,
+          }))
+      );
+    if (optionsError) throw optionsError;
+  }
+
+  // Delete existing criteria and insert new ones
+  if (data.criteria.length > 0) {
+    const { error: deleteCriteriaError } = await supabase
+      .from('criteria')
+      .delete()
+      .eq('decision_id', id);
+    
+    if (deleteCriteriaError) throw deleteCriteriaError;
+
+    const { error: criteriaError } = await supabase
+      .from('criteria')
+      .insert(
+        data.criteria
+          .filter(c => c.name.trim())
+          .map(crit => ({
+            decision_id: id,
+            name: crit.name,
+            weight: crit.weight,
+            description: crit.description,
+          }))
+      );
+    if (criteriaError) throw criteriaError;
+  }
+
+  // Delete existing constraints and insert new ones
+  if (data.constraints && data.constraints.length > 0) {
+    const { error: deleteConstraintsError } = await supabase
+      .from('constraints')
+      .delete()
+      .eq('decision_id', id);
+    
+    if (deleteConstraintsError) throw deleteConstraintsError;
+
+    const { error: constraintsError } = await supabase
+      .from('constraints')
+      .insert(
+        data.constraints.map(cons => ({
+          decision_id: id,
+          type: cons.type,
+          value: cons.value,
+          priority: cons.priority,
+        }))
+      );
+    if (constraintsError) throw constraintsError;
+  } else {
+    // Delete all constraints if none provided
+    const { error: deleteConstraintsError } = await supabase
+      .from('constraints')
+      .delete()
+      .eq('decision_id', id);
+    
+    if (deleteConstraintsError) throw deleteConstraintsError;
+  }
+
+  // Fetch complete decision with relations
+  return getDecision(id);
+}
