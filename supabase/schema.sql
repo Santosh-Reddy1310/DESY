@@ -1,4 +1,4 @@
--- DESY Database Schema for Supabase
+-- KLAROS Database Schema for Supabase
 -- Run this in your Supabase SQL Editor
 
 -- Enable UUID extension

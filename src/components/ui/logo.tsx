@@ -16,7 +16,7 @@ export function Logo({ className, size = "md" }: LogoProps) {
   return (
     <img 
       src="/logo.png" 
-      alt="DESY Logo" 
+      alt="KLAROS Logo" 
       className={cn(sizeClasses[size], "object-contain", className)}
     />
   );

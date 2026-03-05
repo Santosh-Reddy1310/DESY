@@ -1,6 +1,6 @@
-# DESY - AI-Powered Decision Intelligence Platform
+# KLAROS - AI-Powered Decision Intelligence Platform
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://desy.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://klaros.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -8,13 +8,13 @@
 
 > **Transform complex decisions into confident choices with AI-powered analysis and structured decision-making frameworks.**
 
-DESY is an intelligent decision-making platform that combines structured decision analysis with advanced AI to help individuals and teams make better, more informed decisions. Unlike traditional chatbots that provide generic advice, DESY offers a systematic approach to decision-making with personalized insights, multi-criteria analysis, and actionable recommendations.
+KLAROS is an intelligent decision-making platform that combines structured decision analysis with advanced AI to help individuals and teams make better, more informed decisions. Unlike traditional chatbots that provide generic advice, KLAROS offers a systematic approach to decision-making with personalized insights, multi-criteria analysis, and actionable recommendations.
 
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
 - [Key Features](#-key-features)
-- [Why DESY?](#-why-desy)
+- [Why KLAROS?](#-why-klaros)
 - [Technology Stack](#-technology-stack)
 - [Getting Started](#-getting-started)
   - [Prerequisites](#prerequisites)
@@ -34,7 +34,7 @@ DESY is an intelligent decision-making platform that combines structured decisio
 
 ## 🌟 Overview
 
-DESY (Decision System) is built on the principle that better decisions come from structured thinking, not just intuition. By combining proven decision-making frameworks like Multi-Criteria Decision Analysis (MCDA) with the power of modern AI, DESY helps you:
+KLAROS (Knowledge Learning Analysis and Reasoning Operating System) is built on the principle that better decisions come from structured thinking, not just intuition. By combining proven decision-making frameworks like Multi-Criteria Decision Analysis (MCDA) with the power of modern AI, KLAROS helps you:
 
 - **Break down complex decisions** into manageable criteria
 - **Evaluate options objectively** using weighted scoring
@@ -57,7 +57,7 @@ DESY (Decision System) is built on the principle that better decisions come from
 ### 🧠 Intelligent Decision Framework
 
 #### Multi-Criteria Decision Analysis (MCDA)
-DESY implements industry-standard MCDA methodology:
+KLAROS implements industry-standard MCDA methodology:
 - **Weighted Criteria**: Assign importance (1-10) to each decision factor
 - **Normalized Scoring**: Options rated consistently across all criteria
 - **Aggregated Results**: Final scores calculated using weighted averages
@@ -78,7 +78,7 @@ Define decision boundaries that must be respected:
 - **Personal Constraints**: Add subjective non-negotiables
 
 #### Comprehensive Risk Assessment
-For each option, DESY helps identify:
+For each option, KLAROS helps identify:
 - **Financial Risks**: Cost overruns, ROI uncertainty
 - **Operational Risks**: Implementation challenges, dependencies
 - **Strategic Risks**: Market changes, competitive responses
@@ -88,7 +88,7 @@ For each option, DESY helps identify:
 ### 🤖 AI-Powered Insights
 
 #### Contextual Analysis
-DESY's AI engine:
+KLAROS's AI engine:
 - Understands your specific situation and requirements
 - Analyzes historical decision patterns
 - Considers industry-specific factors
@@ -157,11 +157,11 @@ Explore scenarios by:
 - **Privacy Controls**: Granular data sharing settings
 - **Retention Policies**: Configurable data lifecycle
 
-## 🎯 Why DESY?
+## 🎯 Why KLAROS?
 
-### DESY vs Traditional AI Chatbots
+### KLAROS vs Traditional AI Chatbots
 
-| Feature | Traditional AI Chatbots | DESY |
+| Feature | Traditional AI Chatbots | KLAROS |
 |---------|------------------------|------|
 | **Approach** | Conversational advice | Structured decision framework |
 | **Analysis Method** | Subjective responses | Multi-criteria quantitative analysis |
@@ -257,7 +257,7 @@ Explore scenarios by:
 ### AI & Machine Learning
 
 #### AI Provider Support
-DESY supports multiple AI providers for flexibility:
+KLAROS supports multiple AI providers for flexibility:
 
 **Primary Providers:**
 - **OpenAI GPT-4**: Most powerful, highest quality
@@ -353,13 +353,13 @@ You'll need to create accounts with the following services:
 
 ```bash
 # Clone via HTTPS
-git clone https://github.com/yourusername/desy.git
+git clone https://github.com/yourusername/klaros.git
 
 # OR clone via SSH
-git clone git@github.com:yourusername/desy.git
+git clone git@github.com:yourusername/klaros.git
 
 # Navigate to the project directory
-cd desy
+cd klaros
 ```
 
 #### Step 2: Install Dependencies
@@ -795,7 +795,7 @@ The application will start on `http://localhost:5173`
    - Request AI analysis
    - View results
 
-If everything works correctly, you're ready to start using DESY!
+If everything works correctly, you're ready to start using KLAROS!
 
 ## 📖 Usage Guide
 
@@ -918,7 +918,7 @@ Explore the analysis through multiple views:
 **10. Track Outcome**
 - After implementing your decision, record the outcome
 - Note what went well and what didn't
-- Help DESY learn your preferences for future decisions
+- Help KLAROS learn your preferences for future decisions
 
 ### Advanced Features
 
@@ -1344,7 +1344,7 @@ const subscription = supabase
 
 ### Multi-Criteria Decision Analysis (MCDA)
 
-DESY implements a weighted sum model for MCDA:
+KLAROS implements a weighted sum model for MCDA:
 
 #### Score Calculation
 
@@ -1385,7 +1385,7 @@ Weighted Score = (10×7 + 9×9 + 9×8 + 7×10) / 35
 
 ### Risk Assessment Framework
 
-DESY evaluates risks across multiple dimensions:
+KLAROS evaluates risks across multiple dimensions:
 
 #### Risk Categories
 1. **Financial Risk**: Cost overruns, unexpected expenses
@@ -1545,8 +1545,8 @@ AI recommendations include confidence scores (0-100%) based on:
 
 2. **Build and Run:**
    ```bash
-   docker build -t desy .
-   docker run -p 80:80 desy
+   docker build -t klaros .
+   docker run -p 80:80 klaros
    ```
 
 ### Production Considerations
@@ -1581,14 +1581,14 @@ We welcome contributions from the community! Here's how you can help:
 3. **Improve Documentation**: Help make our docs clearer and more comprehensive
 4. **Submit Pull Requests**: Fix bugs or implement features
 5. **Review Code**: Help review open pull requests
-6. **Spread the Word**: Share DESY with others who might benefit
+6. **Spread the Word**: Share KLAROS with others who might benefit
 
 ### Development Setup
 
 1. **Fork and Clone:**
    ```bash
-git clone https://github.com/your-username/desy.git
-cd desy
+git clone https://github.com/your-username/klaros.git
+cd klaros
 ```
 
 2. **Create a Branch:**
@@ -1707,7 +1707,7 @@ If you encounter issues:
 1. **Check Documentation**: Review this README and docs folder
 2. **Search Issues**: Look for similar issues on GitHub
 3. **Ask Community**: Post in GitHub Discussions
-4. **Contact Support**: Email support@desy.app for help
+4. **Contact Support**: Email support@klaros.app for help
 
 ## 🗓 Roadmap
 
@@ -1769,7 +1769,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-DESY wouldn't be possible without these amazing projects and communities:
+KLAROS wouldn't be possible without these amazing projects and communities:
 
 ### Core Technologies
 - **[React](https://reactjs.org/)**: For the powerful UI framework
@@ -1793,7 +1793,7 @@ DESY wouldn't be possible without these amazing projects and communities:
 - **[OpenRouter](https://openrouter.ai/)**: For multi-model access
 
 ### Community
-- All contributors who have helped improve DESY
+- All contributors who have helped improve KLAROS
 - The open-source community for inspiration and support
 - Early adopters and beta testers for valuable feedback
 
@@ -1802,33 +1802,33 @@ DESY wouldn't be possible without these amazing projects and communities:
 ### Get Help
 
 **Documentation**
-- Main Documentation: [docs.desy.app](https://docs.desy.app)
-- API Reference: [docs.desy.app/api](https://docs.desy.app/api)
-- Guides & Tutorials: [docs.desy.app/guides](https://docs.desy.app/guides)
+- Main Documentation: [docs.klaros.app](https://docs.klaros.app)
+- API Reference: [docs.klaros.app/api](https://docs.klaros.app/api)
+- Guides & Tutorials: [docs.klaros.app/guides](https://docs.klaros.app/guides)
 
 **Community**
-- GitHub Issues: [Report bugs or request features](https://github.com/yourusername/desy/issues)
-- GitHub Discussions: [Ask questions and discuss ideas](https://github.com/yourusername/desy/discussions)
-- Discord: [Join our community](https://discord.gg/desy) (coming soon)
+- GitHub Issues: [Report bugs or request features](https://github.com/yourusername/klaros/issues)
+- GitHub Discussions: [Ask questions and discuss ideas](https://github.com/yourusername/klaros/discussions)
+- Discord: [Join our community](https://discord.gg/klaros) (coming soon)
 
 **Direct Support**
-- Email: support@desy.app
-- Twitter: [@desy_app](https://twitter.com/desy_app)
-- LinkedIn: [DESY](https://linkedin.com/company/desy)
+- Email: support@klaros.app
+- Twitter: [@klaros_app](https://twitter.com/klaros_app)
+- LinkedIn: [KLAROS](https://linkedin.com/company/klaros)
 
 ### Feedback
 
-We value your feedback! Help us improve DESY:
+We value your feedback! Help us improve KLAROS:
 
 - **Feature Requests**: Share ideas in GitHub Discussions
 - **Bug Reports**: Open detailed issues on GitHub
-- **User Feedback**: Email feedback@desy.app
+- **User Feedback**: Email feedback@klaros.app
 - **Reviews**: Rate us and leave a review
 
 ### Business Inquiries
 
 For partnership, enterprise, or media inquiries:
-- Email: business@desy.app
+- Email: business@klaros.app
 
 ---
 
@@ -1836,9 +1836,9 @@ For partnership, enterprise, or media inquiries:
 
 **Built with ❤️ for better decision-making**
 
-[Website](https://desy.app) • [Documentation](https://docs.desy.app) • [GitHub](https://github.com/yourusername/desy) • [Twitter](https://twitter.com/desy_app)
+[Website](https://klaros.app) • [Documentation](https://docs.klaros.app) • [GitHub](https://github.com/yourusername/klaros) • [Twitter](https://twitter.com/klaros_app)
 
-⭐ **Star us on GitHub** if DESY helps you make better decisions!
+⭐ **Star us on GitHub** if KLAROS helps you make better decisions!
 
 </div>
 """

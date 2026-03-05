@@ -272,7 +272,7 @@ export default function Dashboard() {
                           <div>
                             <h2 className="text-xl font-bold">Example Decisions</h2>
                             <p className="text-sm text-muted-foreground">
-                              Explore these sample decisions to see how .DI works
+                              Explore these sample decisions to see how KLAROS works
                             </p>
                           </div>
                         </div>

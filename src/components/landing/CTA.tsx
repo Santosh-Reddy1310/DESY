@@ -33,7 +33,7 @@ export function CTA() {
               </h2>
 
               <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                Join thousands of people using .DI to navigate complex choices with confidence and clarity.
+                Join thousands of people using KLAROS to navigate complex choices with confidence and clarity.
               </p>
 
               {/* Trust indicators */}

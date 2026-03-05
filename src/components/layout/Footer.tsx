@@ -71,7 +71,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} .DI. All rights reserved.
+            © {new Date().getFullYear()} KLAROS. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
             Made with <Heart className="h-3.5 w-3.5 text-rose-500 fill-rose-500" /> for better decisions

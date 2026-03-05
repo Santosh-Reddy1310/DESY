@@ -48,7 +48,7 @@ export function HowItWorks() {
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-6">
             Simple Process
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">How .DI Works</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">How KLAROS Works</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Four simple steps to transform uncertainty into clarity and confidence
           </p>

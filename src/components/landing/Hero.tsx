@@ -36,7 +36,7 @@ export function Hero() {
           {/* Subheadline */}
           <p className="mb-8 md:mb-10 text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto animate-fade-in leading-relaxed px-4 sm:px-0">
             Transform complex choices into clear, data-driven outcomes.
-            <span className="hidden sm:inline"> .DI analyzes your options, weighs tradeoffs, and delivers actionable recommendations.</span>
+            <span className="hidden sm:inline">KLAROS analyzes your options, weighs tradeoffs, and delivers actionable recommendations.</span>
             <span className="sm:hidden"> Get AI-powered insights for better decisions.</span>
           </p>
 

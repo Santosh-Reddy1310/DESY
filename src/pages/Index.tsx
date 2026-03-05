@@ -15,7 +15,7 @@ const Index = () => {
           <div className="container px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-                Why Choose .DI?
+                Why Choose KLAROS?
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground mb-8 md:mb-12 px-4 sm:px-0">
                 Our AI-powered platform transforms complex decisions into clear, actionable insights.
@@ -54,7 +54,7 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
                 <a
-                  href="mailto:contact@desy.ai"
+                  href="mailto:contact@klaros.app"
                   className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors text-center"
                 >
                   Email Us

@@ -53,7 +53,7 @@ export function ShareDialog({ open, onOpenChange, decision, result }: ShareDialo
 
   const shareUrl = getShareUrl();
   const shareTitle = `Decision Analysis: ${decision.title}`;
-  const shareText = `I used DESY to analyze "${decision.title}". Recommended: ${result.recommendation.optionLabel} with ${Math.round(result.recommendation.confidence * 100)}% confidence.`;
+  const shareText = `I used KLAROS to analyze "${decision.title}". Recommended: ${result.recommendation.optionLabel} with ${Math.round(result.recommendation.confidence * 100)}% confidence.`;
 
   const handleCopyLink = async () => {
     try {
